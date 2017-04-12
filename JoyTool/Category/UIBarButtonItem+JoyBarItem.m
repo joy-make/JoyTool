@@ -7,7 +7,7 @@
 //
 
 #import "UIBarButtonItem+JoyBarItem.h"
-
+#import "Joy.h"
 @implementation UIBarButtonItem (JoyBarItem)
 + (UIBarButtonItem *)JoyBarButtonItemWithTarget:(id)target
                                       action:(SEL)selector
@@ -16,14 +16,16 @@
                                        title:(NSString *)title
                                   titleColor:(UIColor *)titleColor
                                        frame:(CGRect)frame
+                                      bundle:(NSString *)bundleName
 {
+    normalImgName = JOY_GETBUNDLE_PATH(bundleName,normalImgName);
+    highLightImageName = JOY_GETBUNDLE_PATH(bundleName,normalImgName);
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:frame];
     UIImage* rendingNormalImage = [[UIImage imageNamed:normalImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIImage* rendingHighlightImage = [[UIImage imageNamed:highLightImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [button setImage:rendingNormalImage forState:UIControlStateNormal];
     [button setImage:rendingHighlightImage forState:UIControlStateHighlighted];
-    [button.imageView setValue:@"ThemeOtherBarItemImageView" forKey:@"nuiClass"];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[titleColor colorWithAlphaComponent:0.6] forState:UIControlStateHighlighted];
     [button setTitleColor:titleColor forState:UIControlStateNormal];
@@ -35,8 +37,6 @@
         frame.origin,
         {button.frame.size.width + 2.5,button.frame.size.height},
     };
-    [button setValue:@"ThemeLeftCustomBarButton" forKey:@"nuiClass"];
-    
     return [[UIBarButtonItem alloc]initWithCustomView:button];
 }
 

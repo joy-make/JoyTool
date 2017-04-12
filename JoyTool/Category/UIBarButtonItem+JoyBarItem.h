@@ -15,5 +15,7 @@
                               highLightImage:(NSString *) highLightImageName
                                        title:(NSString *)title
                                   titleColor:(UIColor *)titleColor
-                                       frame:(CGRect)frame;
+                                       frame:(CGRect)frame
+                                      bundle:(NSString *)bundleName;
+;
 @end

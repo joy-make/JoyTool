@@ -40,20 +40,21 @@ static const float KrightNavItemSpace = -8;
 }
 
 #pragma mark action nacitem
-- (void)setLeftNavItemWithTitle:(NSString *)leftNavItemTitle andImageStr:(NSString *)normalImageStr andHighLightImageStr:(NSString *)highLightImageStr action:(SEL)action
+- (void)setLeftNavItemWithTitle:(NSString *)leftNavItemTitle andImageStr:(NSString *)normalImageStr andHighLightImageStr:(NSString *)highLightImageStr action:(SEL)action bundle:(NSString *)bundleName
+
 {
     SEL leftNavItemClickAction = action?@selector(action):@selector(leftNavItemClickAction);
     NSString *leftNormalImageStr = normalImageStr?:@"header_icon_back";
     NSString *leftHighLightImageStr = highLightImageStr?:@"header_icon_back";
-    UIBarButtonItem *backNavigationItem =  [UIBarButtonItem JoyBarButtonItemWithTarget:self action:leftNavItemClickAction normalImage:leftNormalImageStr highLightImage:leftHighLightImageStr title:leftNavItemTitle titleColor:nil frame:CGRectMake(0, 0, KNavLeftSpace, KNavWidth)];
+    UIBarButtonItem *backNavigationItem =  [UIBarButtonItem JoyBarButtonItemWithTarget:self action:leftNavItemClickAction normalImage:leftNormalImageStr highLightImage:leftHighLightImageStr title:leftNavItemTitle titleColor:nil frame:CGRectMake(0, 0, KNavLeftSpace, KNavWidth) bundle:bundleName?:JoyToolBundle];
     UIBarButtonItem *negativeSpaceItem = [[UIBarButtonItem alloc]                                   initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpaceItem.width = KleftNavItemSpace;
     self.navigationItem.leftBarButtonItems = @[negativeSpaceItem, backNavigationItem];
 }
 
-- (void)setRightNavItemWithTitle:(NSString *)rightNavItemTitle andImageStr:(NSString *)normalImageStr andHighLightImageStr:(NSString *)highLightImageStr action:(SEL)action{
+- (void)setRightNavItemWithTitle:(NSString *)rightNavItemTitle andImageStr:(NSString *)normalImageStr andHighLightImageStr:(NSString *)highLightImageStr action:(SEL)action bundle:(NSString *)bundleName{
     SEL rightNavItemClickAction = action?@selector(action):@selector(rightNavItemClickAction);
-    UIBarButtonItem *rightNavigationItem = [UIBarButtonItem JoyBarButtonItemWithTarget:self action:rightNavItemClickAction normalImage:normalImageStr highLightImage:highLightImageStr title:rightNavItemTitle titleColor:nil frame:CGRectMake(0, 0, KNavWidth, KNavWidth)];
+    UIBarButtonItem *rightNavigationItem = [UIBarButtonItem JoyBarButtonItemWithTarget:self action:rightNavItemClickAction normalImage:normalImageStr highLightImage:highLightImageStr title:rightNavItemTitle titleColor:nil frame:CGRectMake(0, 0, KNavWidth, KNavWidth) bundle:bundleName?:JoyToolBundle];
     UIBarButtonItem *negativeSpaceItem = [[UIBarButtonItem alloc]                                   initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpaceItem.width = KrightNavItemSpace;
     [self.navigationItem setRightBarButtonItems:@[negativeSpaceItem ,rightNavigationItem]];
@@ -62,12 +63,12 @@ static const float KrightNavItemSpace = -8;
 #pragma mark - 默认样式
 - (void)setLeftNaviItemWithTitle:(NSString *)leftTitle
 {
-    [self setLeftNavItemWithTitle:leftTitle andImageStr:@"header_icon_back" andHighLightImageStr:@"header_icon_back" action:nil];
+    [self setLeftNavItemWithTitle:leftTitle andImageStr:@"header_icon_back" andHighLightImageStr:@"header_icon_back" action:nil bundle:nil];
 }
 
 - (void)setRightNavItemWithTitle:(NSString *)rightTitle
 {
-    [self setRightNavItemWithTitle:rightTitle andImageStr:nil andHighLightImageStr:nil action:nil];
+    [self setRightNavItemWithTitle:rightTitle andImageStr:nil andHighLightImageStr:nil action:nil bundle:nil];
 }
 
 #pragma clang diagnostic ignored "-Wunused-variable"

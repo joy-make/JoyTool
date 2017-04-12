@@ -295,12 +295,14 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
         self.currentSelectIndexPath = selectIndex;
         [self.delegate textFieldChangedWithIndexPath:selectIndex andChangedText:content andChangedKey:changeTextKey];
     }
+    self.tableTextEndChangedBlock?self.tableTextEndChangedBlock(selectIndex, content,changeTextKey):nil;
 }
 - (void)textHasChanged:(NSIndexPath *)selectIndex andText:(NSString *)content andChangedKey:(NSString *)changeTextKey{
     if([self.delegate respondsToSelector:@selector(textHasChanged:andText:andChangedKey:) ] && content){
         self.currentSelectIndexPath = selectIndex;
         [self.delegate textHasChanged:selectIndex andText:content andChangedKey:changeTextKey];
     }
+    self.tableTextCharacterHasChangedBlock?self.tableTextCharacterHasChangedBlock(selectIndex, content,changeTextKey):nil;
 }
 
 -(void)textshouldBeginEditWithTextContainter:(id)textContainer andIndexPath:(NSIndexPath *)indexPath{
@@ -398,5 +400,12 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
     [self removeFromSuperview];
 }
 
+@end
+
+@implementation JoyTableBaseView
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [[self.dataArrayM[indexPath.section] rowArrayM][indexPath.row] cellH];
+}
 
 @end

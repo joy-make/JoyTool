@@ -30,6 +30,10 @@
     if (model.title) {
         self.titleLabel.text = model.title;
     }
+    if (model.viewShape == EImageTypeRound) {
+        self.headImageView.layer.cornerRadius = 27;
+        self.headImageView.layer.masksToBounds = YES;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

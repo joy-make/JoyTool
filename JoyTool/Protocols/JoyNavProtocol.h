@@ -14,13 +14,15 @@
 - (void)setRightNavItemWithTitle:(NSString *)rightNavItemTitle
                      andImageStr:(NSString *)normalImageStr
             andHighLightImageStr:(NSString *)highLightImageStr
-                          action:(SEL)action;
+                          action:(SEL)action
+                          bundle:(NSString *)bundleName;
 
 #pragma mark 设置导航 默认返回图片是 header_icon_back 所有参数均可不传 action 默认leftNavItemClickAction
 - (void)setLeftNavItemWithTitle:(NSString *)leftNavItemTitle
                     andImageStr:(NSString *)normalImageStr
            andHighLightImageStr:(NSString *)highLightImageStr
-                         action:(SEL)action;
+                         action:(SEL)action
+                         bundle:(NSString *)bundleName;
 
 #pragma mark 快速设置导航
 - (void)setLeftNaviItemWithTitle:(NSString *)leftTitle;

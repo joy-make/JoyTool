@@ -40,6 +40,9 @@ typedef void(^CellEditingBlock)(UITableViewCellEditingStyle editingStyle,NSIndex
 
 typedef void(^CellMoveBlock)(NSIndexPath *sourceIndexPath,NSIndexPath *toIndexPath);
 
+typedef void(^CellTextEndChanged)(NSIndexPath *indexPath,NSString *content,NSString *key);
+
+typedef void(^CellTextCharacterHasChanged)(NSIndexPath *indexPath,NSString *content,NSString *key);
 
 @class JoySectionBaseModel;
 @interface JoyTableAutoLayoutView : UIView<UITableViewDataSource,UITableViewDelegate>
@@ -61,6 +64,11 @@ typedef void(^CellMoveBlock)(NSIndexPath *sourceIndexPath,NSIndexPath *toIndexPa
 @property (nonatomic,copy)CellEditingBlock          tableEditingBlock;
 
 @property (nonatomic,copy)CellMoveBlock             tableMoveBlock;
+
+@property (nonatomic,copy)CellTextEndChanged        tableTextEndChangedBlock;
+
+@property (nonatomic,copy)CellTextCharacterHasChanged   tableTextCharacterHasChangedBlock;
+
 
 @property (nonatomic,assign)BOOL                    editing;
 
@@ -87,5 +95,9 @@ typedef void(^CellMoveBlock)(NSIndexPath *sourceIndexPath,NSIndexPath *toIndexPa
 
 #pragma mark 结束新列
 - (void)endUpdates;
+
+@end
+
+@interface JoyTableBaseView : JoyTableAutoLayoutView
 
 @end
