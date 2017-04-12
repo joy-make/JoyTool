@@ -1,0 +1,16 @@
+PODS:
+  - JoyTool (0.0.1)
+
+DEPENDENCIES:
+  - JoyTool (from `../`)
+
+EXTERNAL SOURCES:
+  JoyTool:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JoyTool: 13fe1451606462ed08bfe3e207c6a22717e62837
+
+PODFILE CHECKSUM: 5b856f0a5521fed592aa4ea3f26aa3a8700849d9
+
+COCOAPODS: 1.2.0

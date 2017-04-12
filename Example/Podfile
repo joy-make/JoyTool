@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'JoyTool_Example' do
+  pod 'JoyTool', :path => '../'
+
+  target 'JoyTool_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
