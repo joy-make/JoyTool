@@ -7,11 +7,15 @@
 //
 
 #import "JAppDelegate.h"
-
+#import "JViewController.h"
 @implementation JAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    JViewController *vc = [[JViewController alloc]init];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    self.window.rootViewController = nav;
+    [self.window makeKeyWindow];
     // Override point for customization after application launch.
     return YES;
 }

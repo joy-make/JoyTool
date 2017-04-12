@@ -7,7 +7,8 @@
 //
 
 @import UIKit;
+#import <JoyTool.h>
 
-@interface JViewController : UIViewController
+@interface JViewController : JoyBaseVC
 
 @end
