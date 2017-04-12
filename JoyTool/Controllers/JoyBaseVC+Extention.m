@@ -2,7 +2,7 @@
 //  JoyBaseVC+Extention.m
 //
 //  Created by wangguopeng on 2017/3/15.
-//  Copyright © 2017年 思源. All rights reserved.
+//  Copyright © 2017年 JoyMake. All rights reserved.
 //
 
 #import "JoyBaseVC+Extention.h"

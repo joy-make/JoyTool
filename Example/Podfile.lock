@@ -1,5 +1,7 @@
 PODS:
-  - JoyTool (0.0.1)
+  - JoyTool (0.0.2):
+    - Masonry
+  - Masonry (1.0.2)
 
 DEPENDENCIES:
   - JoyTool (from `../`)
@@ -9,7 +11,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JoyTool: 13fe1451606462ed08bfe3e207c6a22717e62837
+  JoyTool: a7fcaa20e8f97472c20a9dbe2309f81b48a63dca
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
 
 PODFILE CHECKSUM: 5b856f0a5521fed592aa4ea3f26aa3a8700849d9
 

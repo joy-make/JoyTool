@@ -3,7 +3,7 @@
 //  Toon
 //
 //  Created by wangguopeng on 2017/2/28.
-//  Copyright © 2017年 思源. All rights reserved.
+//  Copyright © 2017年 JoyMake. All rights reserved.
 //
 
 #define SDIMAGE_LOAD(IMAGE_VIEW,URLSTRING,PLACEHOLDER_IMAGESTRING) [IMAGE_VIEW setImageWithUrlString:URLSTRING placeholderImage:[UIImage imageNamed:PLACEHOLDER_IMAGESTRING]];

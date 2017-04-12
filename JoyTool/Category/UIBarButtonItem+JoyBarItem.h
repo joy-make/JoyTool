@@ -3,7 +3,7 @@
 //  Toon
 //
 //  Created by wangguopeng on 2017/2/24.
-//  Copyright © 2017年 思源. All rights reserved.
+//  Copyright © 2017年 JoyMake. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

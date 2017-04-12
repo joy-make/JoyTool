@@ -22,7 +22,7 @@ pod "JoyTool"
 
 ## Author
 
-wangguopeng, wangguopeng@syswin.com
+wangguopeng, joymake@wo.com
 
 ## License
 
