@@ -45,7 +45,7 @@
 @end                                                          //|*
 //***********************传模型协议,必须实现*************************
 
-@interface UITableViewCell (JoyCell)
+@interface UITableViewCell (JoyCell)<JoyCellProtocol>
 
 #pragma mark
 @property (nonatomic,weak) id<JoyCellDelegate> delegate;

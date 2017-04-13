@@ -43,9 +43,10 @@ static const float KrightNavItemSpace = -8;
 - (void)setLeftNavItemWithTitle:(NSString *)leftNavItemTitle andImageStr:(NSString *)normalImageStr andHighLightImageStr:(NSString *)highLightImageStr action:(SEL)action bundle:(NSString *)bundleName
 
 {
+    NSString *defaultIcon = self.navigationController.viewControllers.count>1?@"header_icon_back":nil;
     SEL leftNavItemClickAction = action?@selector(action):@selector(leftNavItemClickAction);
-    NSString *leftNormalImageStr = normalImageStr?:@"header_icon_back";
-    NSString *leftHighLightImageStr = highLightImageStr?:@"header_icon_back";
+    NSString *leftNormalImageStr = normalImageStr?:defaultIcon;
+    NSString *leftHighLightImageStr = highLightImageStr?:defaultIcon;
     UIBarButtonItem *backNavigationItem =  [UIBarButtonItem JoyBarButtonItemWithTarget:self action:leftNavItemClickAction normalImage:leftNormalImageStr highLightImage:leftHighLightImageStr title:leftNavItemTitle titleColor:nil frame:CGRectMake(0, 0, KNavLeftSpace, KNavWidth) bundle:bundleName?:JoyToolBundle];
     UIBarButtonItem *negativeSpaceItem = [[UIBarButtonItem alloc]                                   initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpaceItem.width = KleftNavItemSpace;
@@ -63,7 +64,9 @@ static const float KrightNavItemSpace = -8;
 #pragma mark - 默认样式
 - (void)setLeftNaviItemWithTitle:(NSString *)leftTitle
 {
-    [self setLeftNavItemWithTitle:leftTitle andImageStr:@"header_icon_back" andHighLightImageStr:@"header_icon_back" action:nil bundle:nil];
+    NSString *defaultIcon = self.navigationController.viewControllers.count>1?@"header_icon_back":nil;
+
+    [self setLeftNavItemWithTitle:leftTitle andImageStr:defaultIcon andHighLightImageStr:defaultIcon action:nil bundle:nil];
 }
 
 - (void)setRightNavItemWithTitle:(NSString *)rightTitle

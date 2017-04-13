@@ -33,6 +33,10 @@
 #endif
 //提示语相关结束-------------------------------------------------
 
+//数据处理----------------------------------------------------
+#define Joy_RandomData(list) [list isKindOfClass:[NSArray class]]?((NSArray *)list)[arc4random()%([(NSArray *)list count])]:nil
+//数据处理结束-------------------------------------------------
+
 //MASONRY约束-------------------------------------------------
 #if __has_include(<Masonry/Masonry.h>)
 #import <Masonry/Masonry.h>
@@ -72,7 +76,9 @@
 #define JOY_brownColor      [UIColor brownColor]      // 0.6, 0.4, 0.2 RGB
 #define JOY_clearColor      [UIColor clearColor]      // 0.0 white, 0.0 alpha
 
-#define JOY_RandomColor   @[JOY_blackColor,JOY_darkGrayColor,JOY_lightGrayColor,JOY_whiteColor,JOY_grayColor,JOY_redColor,JOY_greenColor,JOY_blueColor,JOY_cyanColor,JOY_yellowColor,JOY_magentaColor,JOY_orangeColor,JOY_purpleColor,JOY_brownColor,JOY_clearColor]  [arc4random()%15]
+#define JOY_colorList       @[JOY_blackColor,JOY_darkGrayColor,JOY_lightGrayColor,JOY_grayColor,JOY_redColor,JOY_greenColor,JOY_blueColor,JOY_cyanColor,JOY_yellowColor,JOY_magentaColor,JOY_orangeColor,JOY_purpleColor,JOY_brownColor]
+
+#define JOY_RandomColor   Joy_RandomData(JOY_colorList)
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \

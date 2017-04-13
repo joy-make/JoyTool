@@ -31,7 +31,8 @@
         cellModel.title =cellModel.placeHolder= [NSString stringWithFormat:@"rowTitle%zu",index];
         cellModel.titleColor = JOY_RandomColor;
         cellModel.subTitleColor = JOY_RandomColor;
-//        cellModel.backgroundColor = JOY_RandomColor;
+        cellModel.backgroundColor = JOY_RandomColor;
+        cellModel.accessoryType = arc4random()%4;
 //        cellModel.canMove = YES;
         cellModel.subTitle = [NSString stringWithFormat:@"rowSubTitle%zu",index];
         if([cellModel isKindOfClass:[JoyImageCellBaseModel class]])

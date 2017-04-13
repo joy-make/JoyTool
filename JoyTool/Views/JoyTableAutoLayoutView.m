@@ -162,7 +162,6 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
     if(!model.cellH){
         [self registTableCellWithCellModel:model];
         UITableViewCell <JoyCellProtocol>*cell = [tableView dequeueReusableCellWithIdentifier:model.cellName];
-//        JoyBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellName];
         if ([cell respondsToSelector:@selector(setCellWithModel:)]) {
             [cell setCellWithModel:model];
         }
@@ -380,7 +379,8 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
 - (void)registTableCellWithCellModel:(JoyCellBaseModel *)cellModel{
     if (![registCellArrayM containsObject:cellModel.cellName])
     {
-        cellModel.cellType == ECellCodeType?[_tableView registerClass:NSClassFromString(cellModel.cellName) forCellReuseIdentifier:cellModel.cellName]:[_tableView registerNib:[UINib nibWithNibName:cellModel.cellName bundle:JOY_GETBUNDLE(cellModel.bundleName)] forCellReuseIdentifier:cellModel.cellName];
+        cellModel.cellType == ECellCodeType?[_tableView registerClass:NSClassFromString(cellModel.cellName) forCellReuseIdentifier:cellModel.cellName]:
+        [_tableView registerNib:[UINib nibWithNibName:cellModel.cellName bundle:JOY_GETBUNDLE(cellModel.bundleName)] forCellReuseIdentifier:cellModel.cellName];
         [registCellArrayM addObject:cellModel.cellName];
     }
 }

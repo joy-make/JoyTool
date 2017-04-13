@@ -1,7 +1,7 @@
 {
   "name": "JoyTool",
-  "version": "0.0.2",
-  "summary": "add masonry dependency",
+  "version": "0.0.3",
+  "summary": "bundle bug update and ..",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/joy-make/JoyTool",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/joy-make/JoyTool.git",
-    "tag": "0.0.2"
+    "tag": "0.0.3"
   },
   "platforms": {
     "ios": "7.0"
