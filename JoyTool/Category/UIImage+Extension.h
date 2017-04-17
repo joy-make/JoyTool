@@ -12,8 +12,11 @@ FOUNDATION_EXPORT const unsigned char ImageEffectsVersionString[];
 
 @interface UIImage (Extension)
 - (UIImage *)lightImage;
+
 - (UIImage *)extraLightImage;
+
 - (UIImage *)darkImage;
+
 - (UIImage *)tintedImageWithColor:(UIColor *)tintColor;
 
 - (UIImage *)blurredImageWithRadius:(CGFloat)blurRadius;

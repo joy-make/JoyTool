@@ -72,6 +72,11 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
     MAS_CONSTRAINT(weakSelf.tableView, make.edges.equalTo(weakSelf););
 }
 
+-(void)setBackView:(UIView *)backView{
+    _backView = backView;
+    self.tableView.backgroundView = backView;
+}
+
 -(void)setEditing:(BOOL)editing{
     _editing = editing;
     _tableView.editing = editing;
@@ -187,7 +192,7 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
     JoyCellBaseModel * model  = sectionModel.rowArrayM[indexPath.row];
     [self registTableCellWithCellModel:model];
     UITableViewCell <JoyCellProtocol>*cell = [tableView dequeueReusableCellWithIdentifier:model.cellName];
-//    JoyBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellName];
+    //    JoyBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellName];
     __weak __typeof (&*self)weakSelf = self;
     model.cellBlock =^(id obj,ERefreshScheme scheme){
         [weakSelf.tableView beginUpdates];
@@ -223,16 +228,7 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.oldSelectIndexPath = self.currentSelectIndexPath;
-    [self hideKeyBoard];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    JoySectionBaseModel *sectionModel = [self.dataArrayM objectAtIndex:indexPath.section];
-    JoyCellBaseModel * model  = sectionModel.rowArrayM[indexPath.row];
-    if (!model.disable) {
-        self.currentSelectIndexPath = indexPath;
-        self.tableDidSelectBlock?self.tableDidSelectBlock(indexPath,model.tapAction):nil;
-        [model didSelect];
-    }
+    [self cellDidSelectWithIndexPath:indexPath action:nil];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -318,8 +314,18 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
 }
 
 //模拟selectAction
--(void)cellDidSelectWithIndexPath:(NSIndexPath *)indexPath{
-    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+-(void)cellDidSelectWithIndexPath:(NSIndexPath *)indexPath action:(NSString *)action{
+    
+    self.oldSelectIndexPath = self.currentSelectIndexPath;
+    [self hideKeyBoard];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    JoySectionBaseModel *sectionModel = [self.dataArrayM objectAtIndex:indexPath.section];
+    JoyCellBaseModel * model  = sectionModel.rowArrayM[indexPath.row];
+    if (!model.disable) {
+        self.currentSelectIndexPath = indexPath;
+        self.tableDidSelectBlock?self.tableDidSelectBlock(indexPath,action?:model.tapAction):nil;
+        [model didSelect];
+    }
 }
 
 #pragma mark ⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️ scrollDelegate protocol⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️⚽️

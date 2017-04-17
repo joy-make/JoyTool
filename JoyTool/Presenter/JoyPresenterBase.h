@@ -33,6 +33,8 @@
 #pragma MARk goVC
 - (void)goVC:(JoyBaseVC *)vc;
 
+- (void)presentVC:(UIViewController *)vc;
+
 #pragma mark gobackAction
 - (void)popToVCWithVCName:(NSString *)vcName;
 

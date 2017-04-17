@@ -29,6 +29,10 @@
 
 - (void)setRightNavItemWithTitle:(NSString *)rightTitle;
 
+#pragma mark 快速动画导航
+- (void)setLeftNavWithGifStr:(NSString *)gifStr;
+
+- (void)setRightNavWithGifStr:(NSString *)gifStr;
 #pragma mark设置view的默认约束为全屏
 - (void)setDefaultConstraintWithView:(UIView *)view
                             andTitle:(NSString *)title;

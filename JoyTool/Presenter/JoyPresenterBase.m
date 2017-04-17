@@ -62,8 +62,17 @@
 
 #pragma MARk goVC
 - (void)goVC:(JoyBaseVC *)vc{
+    self.rootView.viewController.hidesBottomBarWhenPushed=YES;
     vc?[self.rootView.viewController.navigationController pushViewController:vc
                                                                     animated:YES]:nil;
+    self.rootView.viewController.hidesBottomBarWhenPushed=NO;
+}
+
+#pragma mark present vc
+- (void)presentVC:(UIViewController *)vc{
+    self.rootView.viewController.hidesBottomBarWhenPushed=YES;
+    vc?[self.currentVC presentViewController:vc animated:YES completion:nil]:nil;
+    self.rootView.viewController.hidesBottomBarWhenPushed=NO;
 }
 
 #pragma mark gobackAction

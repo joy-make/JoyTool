@@ -8,22 +8,29 @@
 
 #import "UIBarButtonItem+JoyBarItem.h"
 #import "Joy.h"
+#import "UIImage+Extension.h"
 @implementation UIBarButtonItem (JoyBarItem)
 + (UIBarButtonItem *)JoyBarButtonItemWithTarget:(id)target
-                                      action:(SEL)selector
-                                 normalImage:(NSString *)normalImgName
-                              highLightImage:(NSString *)highLightImageName
-                                       title:(NSString *)title
-                                  titleColor:(UIColor *)titleColor
-                                       frame:(CGRect)frame
-                                      bundle:(NSString *)bundleName
+                                         action:(SEL)selector
+                                    normalImage:(NSString *)normalImgName
+                                 highLightImage:(NSString *)highLightImageName
+                                          title:(NSString *)title
+                                     titleColor:(UIColor *)titleColor
+                                          frame:(CGRect)frame
+                                         bundle:(NSString *)bundleName
 {
-    normalImgName = JOY_GETBUNDLE_PATH(bundleName,normalImgName);
-    highLightImageName = JOY_GETBUNDLE_PATH(bundleName,normalImgName);
+    normalImgName = JOY_GETBUNDLE_PATH(JoyToolBundle,normalImgName);
+    highLightImageName = JOY_GETBUNDLE_PATH(JoyToolBundle,normalImgName);
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:frame];
-    UIImage* rendingNormalImage = [[UIImage imageNamed:normalImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    UIImage* rendingHighlightImage = [[UIImage imageNamed:highLightImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage* rendingNormalImage = [[UIImage imageNamed:normalImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage* rendingHighlightImage = [[UIImage imageNamed:highLightImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    if (rendingNormalImage.size.height>35) {
+        rendingNormalImage = [UIImage UIBezierPathClip:rendingNormalImage cornerRadius:rendingNormalImage.size.width];
+        rendingNormalImage = [UIImage scaleToSize:rendingNormalImage size:CGSizeMake(35, 35)];
+        rendingHighlightImage = [UIImage scaleToSize:rendingHighlightImage size:CGSizeMake(35, 35)];
+    }
     [button setImage:rendingNormalImage forState:UIControlStateNormal];
     [button setImage:rendingHighlightImage forState:UIControlStateHighlighted];
     [button setTitle:title forState:UIControlStateNormal];
@@ -39,5 +46,4 @@
     };
     return [[UIBarButtonItem alloc]initWithCustomView:button];
 }
-
 @end

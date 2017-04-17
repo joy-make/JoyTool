@@ -7,6 +7,7 @@
 #import "UIBarButtonItem+JoyBarItem.h"
 #import "JoyBaseVC+Extention.h"
 #import "UIView+JoyCategory.h"
+#import "UIImage+Extension.h"
 
 static const float KNavLeftSpace = 15;
 static const float KNavWidth = 40;
@@ -60,6 +61,21 @@ static const float KrightNavItemSpace = -8;
     negativeSpaceItem.width = KrightNavItemSpace;
     [self.navigationItem setRightBarButtonItems:@[negativeSpaceItem ,rightNavigationItem]];
 }
+
+- (void)setLeftNavWithGifStr:(NSString *)gifStr{
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage sd_animatedGIFNamed:gifStr] style:UIBarButtonItemStylePlain target:self action:@selector(leftNavItemClickAction)];
+    [self.navigationItem setLeftBarButtonItems:@[leftItem]];
+}
+
+- (void)setRightNavWithGifStr:(NSString *)gifStr{
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage sd_animatedGIFNamed:gifStr]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(rightNavItemClickAction)];
+
+    [self.navigationItem setRightBarButtonItems:@[rightItem] animated:YES];
+}
+
 
 #pragma mark - 默认样式
 - (void)setLeftNaviItemWithTitle:(NSString *)leftTitle

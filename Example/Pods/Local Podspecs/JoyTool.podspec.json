@@ -1,7 +1,7 @@
 {
   "name": "JoyTool",
-  "version": "0.0.3",
-  "summary": "bundle bug update and ..",
+  "version": "0.0.4",
+  "summary": "add animation\\layer ex...",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/joy-make/JoyTool",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/joy-make/JoyTool.git",
-    "tag": "0.0.3"
+    "tag": "0.0.4"
   },
   "platforms": {
     "ios": "7.0"

@@ -32,7 +32,7 @@
 
 
 #pragma mark cell点击回调,比如button、自定义imageview的点击或者其他事件需要触发点击效果的
-- (void)cellDidSelectWithIndexPath:(NSIndexPath *)indexPath;
+- (void)cellDidSelectWithIndexPath:(NSIndexPath *)indexPath action:(NSString *)action;
 
 @end
 //***********************代理协议***********************************

@@ -69,6 +69,7 @@ typedef void(^CellTextCharacterHasChanged)(NSIndexPath *indexPath,NSString *cont
 
 @property (nonatomic,copy)CellTextCharacterHasChanged   tableTextCharacterHasChangedBlock;
 
+@property (nonatomic,strong)UIView             *backView;
 
 @property (nonatomic,assign)BOOL                    editing;
 
