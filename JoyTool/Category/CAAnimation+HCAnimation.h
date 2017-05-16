@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, ShakeDerection) {
  *@param   repeat       动画循环次数，0表示无限循环
  *@param   duration     动画运行一次的时间
  */
-+ (void)showRotateAnimationInView:(UIView *)view Degree:(CGFloat)degree Direction:(Axis)direction Repeat:(CGFloat)repeat Duration:(CGFloat)duration;
++ (void)showRotateAnimationInView:(UIView *)view Degree:(CGFloat)degree Direction:(Axis)direction Repeat:(CGFloat)repeat Duration:(CGFloat)duration autoreverses:(BOOL)autoreverses;
 
 /**
  * 在具体的UIView上实现一个透明度渐变的动画

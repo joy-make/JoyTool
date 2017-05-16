@@ -88,8 +88,8 @@
 
 //        [_segment setWidth:segmentW forSegmentAtIndex:i];
 //        segmentTotalW += segmentW;
-        [_segment setWidth:SCREEN_W/_segmentItems.count forSegmentAtIndex:i];
-        segmentTotalW += SCREEN_W/_segmentItems.count;
+        [_segment setWidth:self.width/_segmentItems.count forSegmentAtIndex:i];
+        segmentTotalW += self.width/_segmentItems.count;
     }
     [_segment setFrame:CGRectMake(0, 0, segmentTotalW, CGRectGetHeight(self.frame))];
     _segment.center = self.center;
@@ -108,11 +108,11 @@
         [_separateLineSuperview addSubview:separateView];
     }
     [_segment setSelectedSegmentIndex:0];
-    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(20, CGRectGetHeight(_separateLineSuperview.frame)-2, SCREEN_W/_segmentItems.count-40, 2)];
+    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(20, CGRectGetHeight(_separateLineSuperview.frame)-2, self.width/_segmentItems.count-40, 2)];
     _bottomView.backgroundColor = self.bottomSliderColor;
 
     [_separateLineSuperview addSubview:_bottomView];
-    _bottomSeparateLineSuperview = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(_separateLineSuperview.frame), SCREEN_W, 0.5)];
+    _bottomSeparateLineSuperview = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(_separateLineSuperview.frame), self.width, 0.5)];
     _bottomSeparateLineSuperview.backgroundColor = UIColorFromRGB(0xDDDEE3);
     [_separateLineSuperview addSubview:_bottomSeparateLineSuperview];
 }
