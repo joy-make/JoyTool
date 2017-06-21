@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '7.0'
 
-  s.default_subspec = 'all'
+  s.default_subspec = 'Common'
 
 
   s.subspec 'Category' do |ss|
