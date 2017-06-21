@@ -21,7 +21,8 @@
     txtLayer.alignmentMode = [NSString stringWithFormat:@"right"];
     txtLayer.fontSize = fontSize;
     txtLayer.foregroundColor = [UIColor grayColor].CGColor;
-    
+    txtLayer.contentsScale = [UIScreen mainScreen].scale;//解决文字模糊 以Retina方式来渲染，防止画出来的文本像素化
+
     txtLayer.shadowColor = [UIColor yellowColor].CGColor;
     txtLayer.shadowOffset = CGSizeMake(5, 2);
     txtLayer.shadowRadius = 6;
