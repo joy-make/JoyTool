@@ -21,6 +21,9 @@
     NSMutableArray *registCellArrayM;
     BOOL _isHasTableFoot;
 }
+@property (nonatomic,readonly)BOOL                        editing;
+@property (nonatomic,strong)UIView                      *backView;
+
 @end
 
 const NSString *tableHDelegate =  @"tableHDelegate";
@@ -83,29 +86,34 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
 }
 
 #pragma mark 准备刷新
-- (void)beginUpdates{
+- (JoyTableAutoLayoutView *)beginUpdates{
     [self.tableView beginUpdates];
+    return self;
 }
 
 #pragma mark 结束新列
-- (void)endUpdates{
+- (JoyTableAutoLayoutView *)endUpdates{
     [self.tableView endUpdates];
+    return self;
 }
 
 #pragma mark 刷新table
--(void)reloadTableView{
+-(JoyTableAutoLayoutView *)reloadTableView{
     objc_setAssociatedObject(self, &tableHDelegate, self.dataArrayM, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self.tableView reloadData];
+    return self;
 }
 
 #pragma mark 刷新table 的section
-- (void)reloadSection:(NSIndexPath *)indexPath{
+- (JoyTableAutoLayoutView *)reloadSection:(NSIndexPath *)indexPath{
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
+    return self;
 }
 
 #pragma mark 刷新table 的row
-- (void)reloadRow:(NSIndexPath *)indexPath{
+- (JoyTableAutoLayoutView *)reloadRow:(NSIndexPath *)indexPath{
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    return self;
 }
 
 #pragma mark 🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲Table DataSource Protocol🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲
@@ -137,7 +145,6 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
     [view addSubview:titleLabel];
     return view;
 }
-
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     JoySectionBaseModel *sectionModel = [self.dataArrayM objectAtIndex:section];
@@ -192,7 +199,6 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
     JoyCellBaseModel * model  = sectionModel.rowArrayM[indexPath.row];
     [self registTableCellWithCellModel:model];
     UITableViewCell <JoyCellProtocol>*cell = [tableView dequeueReusableCellWithIdentifier:model.cellName];
-    //    JoyBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellName];
     __weak __typeof (&*self)weakSelf = self;
     model.cellBlock =^(id obj,ERefreshScheme scheme){
         [weakSelf.tableView beginUpdates];
@@ -268,7 +274,8 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
 
 #pragma mark 挪移action
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
-    self.tableMoveBlock?self.tableMoveBlock(sourceIndexPath, destinationIndexPath):nil;
+    CellMoveBlock cellMoveActionBlock = objc_getAssociatedObject(self, @selector(cellMoveAction));
+    cellMoveActionBlock?cellMoveActionBlock(sourceIndexPath, destinationIndexPath):nil;
 }
 
 
@@ -281,23 +288,19 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
 
 #pragma mark 编辑action
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.tableEditingBlock?self.tableEditingBlock(editingStyle,indexPath):nil;
+    CellEditingBlock cellEiditActionBlock = objc_getAssociatedObject(self, @selector(cellEiditAction));
+    cellEiditActionBlock?cellEiditActionBlock(editingStyle,indexPath):nil;
 }
 
 #pragma mark 😊😊😊😊😊😊😊😊😊😊😊😊Cell‘s Delegate Protocol(text action)😊😊😊😊😊😊😊😊😊😊😊😊😊😊
 -(void)textChanged:(NSIndexPath *)selectIndex andText:(NSString *)content andChangedKey:(NSString *)changeTextKey{
-    if ([self.delegate respondsToSelector:@selector(textFieldChangedWithIndexPath:andChangedText:andChangedKey:)]&& content) {
-        self.currentSelectIndexPath = selectIndex;
-        [self.delegate textFieldChangedWithIndexPath:selectIndex andChangedText:content andChangedKey:changeTextKey];
-    }
-    self.tableTextEndChangedBlock?self.tableTextEndChangedBlock(selectIndex, content,changeTextKey):nil;
+    CellTextEndChanged cellTextEiditEndBlock = objc_getAssociatedObject(self, @selector(cellTextEiditEnd));
+    cellTextEiditEndBlock?cellTextEiditEndBlock(selectIndex, content,changeTextKey):nil;
 }
+
 - (void)textHasChanged:(NSIndexPath *)selectIndex andText:(NSString *)content andChangedKey:(NSString *)changeTextKey{
-    if([self.delegate respondsToSelector:@selector(textHasChanged:andText:andChangedKey:) ] && content){
-        self.currentSelectIndexPath = selectIndex;
-        [self.delegate textHasChanged:selectIndex andText:content andChangedKey:changeTextKey];
-    }
-    self.tableTextCharacterHasChangedBlock?self.tableTextCharacterHasChangedBlock(selectIndex, content,changeTextKey):nil;
+    CellTextCharacterHasChanged cellTextCharacterHasChangedBlock = objc_getAssociatedObject(self, @selector(cellTextCharacterHasChanged));
+    cellTextCharacterHasChangedBlock?cellTextCharacterHasChangedBlock(selectIndex, content,changeTextKey):nil;
 }
 
 -(void)textshouldBeginEditWithTextContainter:(id)textContainer andIndexPath:(NSIndexPath *)indexPath{
@@ -323,7 +326,9 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
     JoyCellBaseModel * model  = sectionModel.rowArrayM[indexPath.row];
     if (!model.disable) {
         self.currentSelectIndexPath = indexPath;
-        self.tableDidSelectBlock?self.tableDidSelectBlock(indexPath,action?:model.tapAction):nil;
+        CellSelectBlock cellSelectBlock = objc_getAssociatedObject(self, @selector(cellDidSelect));
+        cellSelectBlock?cellSelectBlock(indexPath,action?:model.tapAction):nil;
+        //model中有事件的直接触发model的事件
         [model didSelect];
     }
 }
@@ -336,9 +341,9 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.scrollDelegate respondsToSelector:@selector(scrollDidScroll:)]?[self.scrollDelegate scrollDidScroll:scrollView]:nil;
+    ScrollBlock tableScrollBlock = objc_getAssociatedObject(self, @selector(tableScroll));
+    tableScrollBlock?tableScrollBlock(scrollView):nil;
 }
-
 
 - (void)hideKeyBoard{
     _isHasTableFoot?:[self.tableView setTableFooterView:[[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 20)]];
@@ -395,14 +400,119 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
     return _dataArrayM =_dataArrayM?:[NSMutableArray arrayWithCapacity:0];
 }
 
+#pragma mark getMethod
+//让Table确认是否可编辑
+-(JoyTableAutoLayoutView *(^)(BOOL))setTableEdit{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(BOOL canEdit){
+        weakSelf.editing = canEdit;
+        return weakSelf;
+    };
+}
+
+//给Table数据源
+-(JoyTableAutoLayoutView *(^)(NSMutableArray<JoySectionBaseModel *> *))setDataSource{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(NSMutableArray *dataArrayM){
+        weakSelf.dataArrayM = dataArrayM;
+        return weakSelf;
+    };
+}
+
+//给背景视图TableBackView
+-(JoyTableAutoLayoutView *(^)(UIView *))setTableBackView{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(UIView *backView){
+        weakSelf.backView = backView;
+        return weakSelf;
+    };
+}
+
+//给头视图TableHeadView
+-(JoyTableAutoLayoutView *(^)(UIView *))setTableHeadView{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(UIView *headView){
+        [weakSelf setTableHeaderView:headView];
+        return weakSelf;
+    };
+}
+
+//给尾视图TableFootView
+-(JoyTableAutoLayoutView *(^)(UIView *))setTableFootView{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(UIView *headView){
+        [weakSelf setTableFootView:headView];
+        return weakSelf;
+    };
+}
+
+//刷新整个Table
+-(JoyTableAutoLayoutView *(^)())reloadTable{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(){
+        [weakSelf reloadTableView];
+        return weakSelf;
+    };
+}
+
+-(JoyTableAutoLayoutView *(^)(ScrollBlock))tableScroll{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(ScrollBlock block){
+        objc_setAssociatedObject(weakSelf, _cmd, block, OBJC_ASSOCIATION_COPY);
+        return weakSelf;
+    };
+}
+
+//cell 被点击
+-(JoyTableAutoLayoutView *(^)(CellSelectBlock))cellDidSelect{
+    
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(CellSelectBlock block){
+        objc_setAssociatedObject(weakSelf, _cmd, block, OBJC_ASSOCIATION_COPY);
+        return weakSelf;
+    };
+}
+
+//cell编辑事件
+-(JoyTableAutoLayoutView *(^)(CellEditingBlock))cellEiditAction{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(CellEditingBlock block){
+        objc_setAssociatedObject(weakSelf, _cmd, block, OBJC_ASSOCIATION_COPY);
+        return weakSelf;
+    };
+}
+
+//cell 挪移事件
+-(JoyTableAutoLayoutView *(^)(CellMoveBlock))cellMoveAction{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(CellMoveBlock block){
+        objc_setAssociatedObject(weakSelf, _cmd, block, OBJC_ASSOCIATION_COPY);
+        return weakSelf;
+    };
+}
+
+//cell文本编辑结束
+-(JoyTableAutoLayoutView *(^)(CellTextEndChanged))cellTextEiditEnd{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(CellTextEndChanged block){
+        objc_setAssociatedObject(weakSelf, _cmd, block, OBJC_ASSOCIATION_COPY);
+        return weakSelf;
+    };
+}
+
+//cell 文字编辑发生变化
+-(JoyTableAutoLayoutView *(^)(CellTextCharacterHasChanged))cellTextCharacterHasChanged{
+    __weak __typeof(&*self)weakSelf = self;
+    return ^(CellTextCharacterHasChanged block){
+        objc_setAssociatedObject(weakSelf, _cmd, block, OBJC_ASSOCIATION_COPY);
+        return weakSelf;
+    };
+}
+
 -(void)dealloc{
     self.dataArrayM = nil;
-    self.delegate = nil;
     self.tableView.delegate = nil;
     self.tableView.dataSource = nil;
-    self.scrollDelegate = nil;
-    self.tableDidSelectBlock = nil;
-    self.tableEditingBlock = nil;
     [self removeFromSuperview];
 }
 
@@ -415,3 +525,4 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
 }
 
 @end
+

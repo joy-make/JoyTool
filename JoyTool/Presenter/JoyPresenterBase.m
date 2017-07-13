@@ -63,9 +63,10 @@
 #pragma MARk goVC
 - (void)goVC:(JoyBaseVC *)vc{
     self.rootView.viewController.hidesBottomBarWhenPushed=YES;
+    BOOL isNavStackMoreThanOne = self.rootView.viewController.navigationController.viewControllers.count>1;
     vc?[self.rootView.viewController.navigationController pushViewController:vc
                                                                     animated:YES]:nil;
-    self.rootView.viewController.hidesBottomBarWhenPushed=NO;
+    self.rootView.viewController.hidesBottomBarWhenPushed=isNavStackMoreThanOne;
 }
 
 #pragma mark present vc
@@ -115,3 +116,4 @@
     
 }
 @end
+

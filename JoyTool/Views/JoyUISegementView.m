@@ -61,11 +61,11 @@
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     UIFont *font = [UIFont boldSystemFontOfSize:15];
     _segment = [[UISegmentedControl alloc]initWithItems:_segmentItems];
-    _segment.backgroundColor = [UIColor whiteColor];
-    _segment.tintColor = [UIColor whiteColor];
+    _segment.backgroundColor = [UIColor clearColor];
+    _segment.tintColor = [UIColor clearColor];
     _segment.layer.masksToBounds = YES;
     _segment.layer.borderWidth = 2;
-    _segment.layer.borderColor = [UIColor whiteColor].CGColor;
+    _segment.layer.borderColor = [UIColor clearColor].CGColor;
     [self addSubview:_segment];
     [_segment addTarget:self action:@selector(segmentTap:) forControlEvents:UIControlEventValueChanged];
     

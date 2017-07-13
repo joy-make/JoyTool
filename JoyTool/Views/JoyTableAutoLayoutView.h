@@ -11,94 +11,80 @@
 
 #import "UIView+JoyCategory.h"
 #import "joy.h"
+@class JoyTableAutoLayoutView;
 
-#pragma mark 文本编辑协议
-@protocol TextChangedDelegete <NSObject>
-@optional;
-#pragma mark 文本取消第一响应时
-- (void)textFieldChangedWithIndexPath:(NSIndexPath *)indexPath
-                       andChangedText:(NSString *)content
-                        andChangedKey:(NSString *)key;
+typedef void (^CellSelectBlock)(NSIndexPath *indexPath,NSString *tapAction);
 
-#pragma MARK 文本内容发生变化比如输了一个字符
-- (void)textHasChanged:(NSIndexPath *)selectIndex
-               andText:(NSString *)content
-         andChangedKey:(NSString *)changeTextKey;
+typedef void (^CellEditingBlock)(UITableViewCellEditingStyle editingStyle,NSIndexPath *indexPath);
 
-@end
+typedef void (^CellMoveBlock)(NSIndexPath *sourceIndexPath,NSIndexPath *toIndexPath);
 
-#pragma MARK 滚动协议
-@protocol ScrollDelegate <NSObject>
+typedef void (^CellTextEndChanged)(NSIndexPath *indexPath,NSString *content,NSString *key);
 
-- (void)scrollDidScroll:(UIScrollView *)scrollView;
+typedef void (^CellTextCharacterHasChanged)(NSIndexPath *indexPath,NSString *content,NSString *key);
 
-@end
-
-typedef void(^CellSelectBlock)(NSIndexPath *indexPath,NSString *tapAction);
-
-typedef void(^CellEditingBlock)(UITableViewCellEditingStyle editingStyle,NSIndexPath *indexPath);
-
-typedef void(^CellMoveBlock)(NSIndexPath *sourceIndexPath,NSIndexPath *toIndexPath);
-
-typedef void(^CellTextEndChanged)(NSIndexPath *indexPath,NSString *content,NSString *key);
-
-typedef void(^CellTextCharacterHasChanged)(NSIndexPath *indexPath,NSString *content,NSString *key);
+typedef void (^ScrollBlock)(UIScrollView *scrollView);
 
 @class JoySectionBaseModel;
 @interface JoyTableAutoLayoutView : UIView<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic,strong)UITableView             *tableView;
+@property (nonatomic,strong)UITableView                             *tableView;
 
-@property (nonatomic,strong)NSMutableArray<JoySectionBaseModel *> *dataArrayM;
+@property (nonatomic,strong)NSMutableArray<JoySectionBaseModel *>   *dataArrayM;
 
-@property (nonatomic,weak)id<TextChangedDelegete>   delegate;
+@property (nonatomic,strong)NSIndexPath                             *oldSelectIndexPath;
 
-@property (nonatomic,weak)id<ScrollDelegate>        scrollDelegate;
+@property (nonatomic,strong)NSIndexPath                             *currentSelectIndexPath;
 
-@property (nonatomic,strong)NSIndexPath             *oldSelectIndexPath;
+//**********************************链式配置,以支持链式调用*************************************************
+#pragma mark  让Table确认是否可编辑
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^setTableEdit)(BOOL canEdit);
+#pragma mark  给Table数据源
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^setDataSource)(NSMutableArray<JoySectionBaseModel *> *dataArrayM);
+#pragma mark  给背景视图TableBackView
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^setTableBackView)(UIView *backView);
+#pragma mark  给头视图TableHeadView
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^setTableHeadView)(UIView *headView);
+#pragma mark  给尾视图TableFootView
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^setTableFootView)(UIView *footView);
+#pragma mark  刷新整个Table
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^reloadTable)();
 
-@property (nonatomic,strong)NSIndexPath             *currentSelectIndexPath;
+//**************编辑Action
+#pragma mark  Cell 选中
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^cellDidSelect)(CellSelectBlock cellSelectBlock);
+#pragma mark  Cell 编辑
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^cellEiditAction)(CellEditingBlock cellEditingBlock);
+#pragma mark  Cell 挪动从from 挪到to
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^cellMoveAction)(CellMoveBlock cellMoveBlock);
+#pragma mark  Cell上文本编辑结束
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^cellTextEiditEnd)(CellTextEndChanged cellTextEiditEndBlock);
+#pragma mark  Cell上文本字符编辑发生变化
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^cellTextCharacterHasChanged)(CellTextCharacterHasChanged cellTextCharacterHasChangedBlock);
+//**************编辑Action结束
+#pragma mark Table滚动
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^tableScroll)(ScrollBlock scrollBlock);
 
-@property (nonatomic,copy)CellSelectBlock           tableDidSelectBlock;
-
-@property (nonatomic,copy)CellEditingBlock          tableEditingBlock;
-
-@property (nonatomic,copy)CellMoveBlock             tableMoveBlock;
-
-@property (nonatomic,copy)CellTextEndChanged        tableTextEndChangedBlock;
-
-@property (nonatomic,copy)CellTextCharacterHasChanged   tableTextCharacterHasChangedBlock;
-
-@property (nonatomic,strong)UIView             *backView;
-
-@property (nonatomic,assign)BOOL                    editing;
-
-#pragma mark  table headview
-- (void)setTableHeaderView:(UIView *)headView;
-
-#pragma mark table footview
-- (void)setTableFootView:(UIView *)footView;
-
-#pragma mark 刷新整个table
-- (void)reloadTableView;
+//**********************************链式配置,以支持链式调用*************************************************
 
 #pragma mark 刷新section
-- (void)reloadSection:(NSIndexPath *)indexPath;
+- (JoyTableAutoLayoutView *)reloadSection:(NSIndexPath *)indexPath;
 
 #pragma mark 刷新列
-- (void)reloadRow:(NSIndexPath *)indexPath;
+- (JoyTableAutoLayoutView *)reloadRow:(NSIndexPath *)indexPath;
 
 #pragma mark 设置约束 子类调super时用
 - (void)setConstraint;
 
 #pragma mark 准备刷新
-- (void)beginUpdates;
+- (JoyTableAutoLayoutView *)beginUpdates;
 
 #pragma mark 结束新列
-- (void)endUpdates;
+- (JoyTableAutoLayoutView *)endUpdates;
 
 @end
 
 @interface JoyTableBaseView : JoyTableAutoLayoutView
 
 @end
+
