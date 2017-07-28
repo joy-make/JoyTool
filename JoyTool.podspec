@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JoyTool'
-  s.version          = '0.0.11'
-  s.summary          = '链式view调用'
+  s.version          = '0.0.12'
+  s.summary          = 'JoyPickView增加选中api'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

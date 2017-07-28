@@ -149,6 +149,31 @@
     }];
 }
 
+#pragma mark 选中某一个component的某一个row
+- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated{
+    [self.pickerView selectRow:row inComponent:component animated:animated];
+}
+
+#pragma mark 根据component(key)对应的value进行查找 可全给或者给部分，根据componet确定
+- (void)selectStrWithDict:(NSDictionary *)selectDict animated:(BOOL)animated{
+    __weak __typeof(&*self)weakSelf = self;
+    NSArray *selectComponentArray = selectDict.allKeys;
+    NSAssert(selectComponentArray.count<=self.dataArray.count, @"giveSource not math dataSource");
+    [selectComponentArray enumerateObjectsUsingBlock:^(NSString *componentIndex, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSAssert([componentIndex isKindOfClass:[NSString class]],@"请确认所给key为string类型的数字" );
+        NSArray *rowArray = weakSelf.dataArray[[componentIndex integerValue]];
+        NSString *selectValue = [selectDict valueForKey:componentIndex];
+        NSAssert([rowArray containsObject:selectValue],@"所给datasource中没有包含本selectvalue,请确认");
+        if(![rowArray containsObject:selectValue]){
+            NSLog(@"所给datasource中没有包含本selectvalue,请确认");
+        }else{
+            NSInteger row = [rowArray indexOfObject:[selectDict valueForKey:componentIndex]];
+            [weakSelf.pickerView selectRow:row inComponent:[componentIndex integerValue] animated:animated];
+        }
+    }];
+}
+
+
 #pragma mark - pickerviewdataSource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return self.dataArray.count;

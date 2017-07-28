@@ -21,4 +21,9 @@
 
 - (void)hidePickView;
 
+#pragma mark 选中某一个component的某一个row
+- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated;
+
+#pragma mark 根据component(key)对应的value进行查找 可全给或者给部分，根据componet确定
+- (void)selectStrWithDict:(NSDictionary *)selectDict animated:(BOOL)animated;
 @end
