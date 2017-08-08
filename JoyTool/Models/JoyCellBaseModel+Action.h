@@ -10,7 +10,7 @@
 
 @interface JoyCellBaseModel (Action)
 //点击事件回调时实现model的回调函数，执行此函数
-- (void)didSelect;
+- (void)action:(NSString *)actionStr;
 
 - (void)goVC:(UIViewController *)vc;
 

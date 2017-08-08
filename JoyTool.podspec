@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JoyTool'
-  s.version          = '0.0.12'
-  s.summary          = 'JoyPickView增加选中api'
+  s.version          = '0.0.13'
+  s.summary          = 'cell的长按事件'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

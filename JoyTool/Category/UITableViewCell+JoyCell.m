@@ -51,6 +51,15 @@
     return objc_getAssociatedObject(self, @selector(setEndUpdatesBlock:));
 }
 
+
+-(void (^)())longPressBlock{
+    return objc_getAssociatedObject(self, @selector(setLongPressBlock:));
+}
+
+-(void)setLongPressBlock:(void (^)())longPressBlock{
+    objc_setAssociatedObject(self, _cmd, longPressBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
 -(void)setScrollBlock:(void (^)(NSIndexPath *, UITableViewScrollPosition, BOOL))scrollBlock{
     objc_setAssociatedObject(self, _cmd, scrollBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }

@@ -103,9 +103,7 @@
         NSString *name=[propertyArray objectAtIndex:i];
         
         id value=[self valueForKey:name];
-        if([name isEqualToString:@"registeredPlugins"]){
-            NSLog(@"");
-        }
+  
         if([value respondsToSelector:@selector(mutableCopyWithZone:)]){
             
             [objCopy setValue:[value mutableCopy] forKey:name];

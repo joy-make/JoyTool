@@ -56,5 +56,7 @@
 
 @property (nonatomic,copy)void (^endUpdatesBlock)();
 
+@property (nonatomic,copy)void (^longPressBlock)();
+
 @property (nonatomic,copy)void (^scrollBlock)(NSIndexPath *indexPath,UITableViewScrollPosition scrollPosition,BOOL animated);
 @end

@@ -15,8 +15,4 @@
 #pragma mark 启用导航按钮
 - (void)enableRightNavItem;
 
-#pragma mark 开始moblog
-- (void)moblogStartOrEnd:(BOOL)isStart;
-
-
 @end

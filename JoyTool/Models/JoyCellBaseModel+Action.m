@@ -9,11 +9,11 @@
 #import "JoyCellBaseModel+Action.h"
 @implementation JoyCellBaseModel (Action)
 
-- (void)didSelect
+- (void)action:(NSString *)actionStr
 {
-    if (self.tapAction)
+    if (actionStr)
     {
-        SEL selector = NSSelectorFromString(self.tapAction);
+        SEL selector = NSSelectorFromString(actionStr);
         IMP imp = [self methodForSelector:selector];
         void (*func)(id, SEL) = (void *)imp;
         if ([self respondsToSelector:selector])

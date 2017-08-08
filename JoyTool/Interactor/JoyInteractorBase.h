@@ -12,7 +12,6 @@
 #define KSepatatorInsetLeading 90
 
 #import <Foundation/Foundation.h>
-#import "joy.h"
 @interface JoyInteractorBase : NSObject
 
 

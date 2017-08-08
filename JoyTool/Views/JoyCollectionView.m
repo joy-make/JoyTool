@@ -103,7 +103,7 @@ const int min_cellInset = 15;
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     JoyCellBaseModel *cellModel = self.dataArray[indexPath.row];
-    [cellModel didSelect];
+    [cellModel action:cellModel.tapAction];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{

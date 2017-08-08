@@ -6,7 +6,6 @@
 #import "JoyBaseVC.h"
 #import "UIBarButtonItem+JoyBarItem.h"
 #import "JoyBaseVC+Extention.h"
-#import "UIView+JoyCategory.h"
 #import "UIImage+Extension.h"
 
 static const float KNavLeftSpace = 15;
@@ -21,16 +20,6 @@ static const float KrightNavItemSpace = -8;
     [super viewDidLoad];
     [self setNavItem];
     NSLog(@"The current viewController is %@", self);
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self moblogStartOrEnd:YES];
-}
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self moblogStartOrEnd:NO];
 }
 
 - (void)setNavItem{
@@ -138,12 +127,10 @@ static const float KrightNavItemSpace = -8;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 -(void)dealloc
 {
     NSLog(@"The dealloc viewController is %@", [self class]);
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-    [self.view removeAllSubviews];
 }
 
 @end

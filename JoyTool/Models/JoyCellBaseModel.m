@@ -7,7 +7,6 @@
 //
 
 #import "JoyCellBaseModel.h"
-//#import "AppDelegate.h"
 
 @implementation JoyCellBaseModel
 

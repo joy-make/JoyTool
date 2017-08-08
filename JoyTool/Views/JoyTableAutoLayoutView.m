@@ -227,6 +227,10 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
         [weakSelf.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
     };
     
+    cell.longPressBlock = ^{
+        [weakSelf cellDidSelectWithIndexPath:indexPath action:model.longPressAction];
+    };
+    
     cell.accessoryType = model.accessoryType;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.userInteractionEnabled = !model.disable;
@@ -328,8 +332,7 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
         self.currentSelectIndexPath = indexPath;
         CellSelectBlock cellSelectBlock = objc_getAssociatedObject(self, @selector(cellDidSelect));
         cellSelectBlock?cellSelectBlock(indexPath,action?:model.tapAction):nil;
-        //model中有事件的直接触发model的事件
-        [model didSelect];
+        [model action:action];
     }
 }
 

@@ -89,6 +89,9 @@ typedef void(^AToBCellBlock)(id obj);
 //点击事件的sel name 在子类中实现
 @property (nonatomic,copy)    NSString    *tapAction;
 
+//长按的sel name 在子类中实现
+@property (nonatomic,copy)    NSString    *longPressAction;
+
 //文本类cell text发生变化时传回的key值用于修改对象对应的值
 @property (nonatomic,copy)    NSString    *changeKey;
 
