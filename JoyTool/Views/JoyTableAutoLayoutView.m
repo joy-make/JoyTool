@@ -171,18 +171,18 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     JoySectionBaseModel *sectionModel = [self.dataArrayM objectAtIndex:indexPath.section];
     JoyCellBaseModel * model  = sectionModel.rowArrayM[indexPath.row];
-    if(!model.cellH){
-        [self registTableCellWithCellModel:model];
-        UITableViewCell <JoyCellProtocol>*cell = [tableView dequeueReusableCellWithIdentifier:model.cellName];
-        if ([cell respondsToSelector:@selector(setCellWithModel:)]) {
-            [cell setCellWithModel:model];
-        }
-        [cell.contentView setNeedsLayout];
-        [cell.contentView layoutIfNeeded];
-        CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height+1;
-        model.cellH = height;
-    }
-    return model.cellH;
+//    if(!model.cellH){
+//        [self registTableCellWithCellModel:model];
+//        UITableViewCell <JoyCellProtocol>*cell= [tableView dequeueReusableCellWithIdentifier:model.cellName];
+//        if ([cell respondsToSelector:@selector(setCellWithModel:)]) {
+//            [cell setCellWithModel:model];
+//        }
+//        [cell.contentView setNeedsLayout];
+//        [cell.contentView layoutIfNeeded];
+//        CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height+1;
+//        model.cellH = height;
+//    }
+    return model.cellH?:44;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

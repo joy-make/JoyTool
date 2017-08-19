@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,21 +15,21 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4J-TD-pUj">
-                        <rect key="frame" x="15" y="0.0" width="32" height="44.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4J-TD-pUj">
+                        <rect key="frame" x="15" y="5" width="0.0" height="36"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="L81-YN-cM8"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="mvQ-ke-FeJ"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="L81-YN-cM8"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="MkD-vV-Iib"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rr-Zy-DeA" userLabel="MiddleLabel">
-                        <rect key="frame" x="50" y="0.0" width="0.0" height="44.5"/>
+                        <rect key="frame" x="18" y="0.0" width="0.0" height="44.5"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="v4A-aN-77l"/>
                         </constraints>
@@ -48,16 +48,16 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="f4J-TD-pUj" secondAttribute="bottom" id="0sv-MT-CIR"/>
                     <constraint firstAttribute="bottom" secondItem="7rr-Zy-DeA" secondAttribute="bottom" id="5lL-N7-n19"/>
                     <constraint firstItem="7rr-Zy-DeA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="EiK-tO-Hye"/>
-                    <constraint firstItem="f4J-TD-pUj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="JPM-5y-dus"/>
                     <constraint firstAttribute="bottom" secondItem="9dO-rk-GCx" secondAttribute="bottom" id="K6p-pw-wC0"/>
+                    <constraint firstItem="f4J-TD-pUj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="UJX-uR-3C8"/>
                     <constraint firstItem="9dO-rk-GCx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="VEG-QH-leB"/>
                     <constraint firstItem="9dO-rk-GCx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7rr-Zy-DeA" secondAttribute="trailing" constant="3" id="iAp-AI-soE"/>
                     <constraint firstAttribute="trailing" secondItem="9dO-rk-GCx" secondAttribute="trailing" constant="10" id="m9N-6l-BnV"/>
                     <constraint firstItem="7rr-Zy-DeA" firstAttribute="leading" secondItem="f4J-TD-pUj" secondAttribute="trailing" constant="3" id="nKE-WT-1d0"/>
                     <constraint firstItem="f4J-TD-pUj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="nlb-DM-Eaj"/>
+                    <constraint firstItem="f4J-TD-pUj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ubi-yJ-thb"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

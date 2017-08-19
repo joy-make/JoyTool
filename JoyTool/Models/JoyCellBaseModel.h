@@ -68,6 +68,9 @@ typedef void(^AToBCellBlock)(id obj);
 //副标题
 @property (nonatomic,copy)    NSString      *topicTitle;
 
+//扩展字段
+@property (nonatomic,strong)NSObject *expandBbj;
+
 //右箭头隐藏与否 yes隐藏 no显示
 @property (nonatomic,assign)  UITableViewCellAccessoryType    accessoryType;
 

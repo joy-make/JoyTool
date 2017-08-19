@@ -78,7 +78,7 @@
 
 #define JOY_colorList       @[JOY_blackColor,JOY_darkGrayColor,JOY_lightGrayColor,JOY_grayColor,JOY_redColor,JOY_greenColor,JOY_blueColor,JOY_cyanColor,JOY_yellowColor,JOY_magentaColor,JOY_orangeColor,JOY_purpleColor,JOY_brownColor]
 
-#define JOY_RandomColor   Joy_RandomData(JOY_colorList)
+#define JOY_RandomColor   UIColorFromRGB(arc4random()%0xFFFFFF)
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \

@@ -37,7 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setDefaultConstraintWithView:self.layoutView andTitle:@"test"];
+    [self setDefaultConstraintWithView:self.layoutView andTitle:@"10000条随机数据测试"];
     [self setRightNavItemWithTitle:@"edit"];
     [self.presenter reloadDataSource];
 }

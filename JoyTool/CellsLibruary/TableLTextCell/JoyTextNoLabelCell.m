@@ -11,14 +11,42 @@
 #import "NSString+JoyCategory.h"
 #import "UITextField+JoyCategory.h"
 #import "joy.h"
-@interface JoyTextNoLabelCell()
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@interface JoyTextNoLabelCell()<UITextFieldDelegate>
+@property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic,copy) NSString *inputOldStr;
 @property (nonatomic,copy)NSString *changeTextKey;
 
 @end
 
 @implementation JoyTextNoLabelCell
+
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self.contentView addSubview:self.textField];
+        [self setConstraint];
+        [self updateConstraintsIfNeeded];
+    }
+    return self;
+}
+
+-(UITextField *)textField{
+    if (!_textField) {
+        _textField = [[UITextField alloc]initWithFrame:CGRectZero];
+        _textField.delegate = self;
+        _textField.font = [UIFont systemFontOfSize:14];
+    }
+    return _textField;
+}
+
+-(void)setConstraint{
+    __weak __typeof(&*self)weakSelf = self;
+    MAS_CONSTRAINT(self.textField, make.leading.mas_equalTo(weakSelf.contentView).offset(15);
+                   make.trailing.mas_equalTo(weakSelf.contentView).offset(-15);
+                   make.height.mas_greaterThanOrEqualTo(33.5);
+                   make.top.mas_equalTo(weakSelf.contentView.mas_top).offset(5);
+                   make.centerY.mas_equalTo(weakSelf.contentView.mas_centerY);
+                   );
+}
 
 -(void)setCellWithModel:(JoyTextCellBaseModel *)model{
     self.changeTextKey = model.changeKey;
@@ -37,6 +65,7 @@
     self.textField.text = model.title;
     self.textField.borderStyle = model.borderStyle;
     objc_setAssociatedObject(self, @selector(editingEnd:), model, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, @selector(textFieldDidEndEditing:), model, OBJC_ASSOCIATION_RETAIN);
     self.contentView.userInteractionEnabled = !model.disable;
     
     NSMutableAttributedString *placeholder = [[NSMutableAttributedString alloc]initWithString:model.placeHolder];
@@ -57,6 +86,14 @@
 }
 
 - (IBAction)editingEnd:(UITextField *)textField {
+    if ([self.delegate respondsToSelector:@selector(textChanged:andText:andChangedKey:)]) {
+        JoyTextCellBaseModel *model = objc_getAssociatedObject(self, _cmd);
+        model.title = textField.text;
+        [self.delegate textChanged:self.index andText:textField.text andChangedKey:self.changeTextKey];
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
     if ([self.delegate respondsToSelector:@selector(textChanged:andText:andChangedKey:)]) {
         JoyTextCellBaseModel *model = objc_getAssociatedObject(self, _cmd);
         model.title = textField.text;

@@ -17,15 +17,22 @@
     __weak __typeof (&*self)weakSelf = self;
     [self.interactor getDataSourceSuccess:^(NSArray *list)
     {
-    weakSelf.layoutView.setDataSource(weakSelf.interactor.dataArrayM).reloadTable().setTableEdit(YES).cellDidSelect(^(NSIndexPath *indexPath, NSString *tapAction) {
+    weakSelf.layoutView.setDataSource(weakSelf.interactor.dataArrayM)
+        .reloadTable()
+        .setTableEdit(YES)
+        .cellDidSelect(^(NSIndexPath *indexPath, NSString *tapAction) {
             [weakSelf performTapAction:tapAction];
-        }).cellEiditAction(^(UITableViewCellEditingStyle editingStyle,NSIndexPath *indexPath) {
+        })
+        .cellEiditAction(^(UITableViewCellEditingStyle editingStyle,NSIndexPath *indexPath) {
             //自定义编辑action
-        }).cellMoveAction(^(NSIndexPath *sourceIndexPath,NSIndexPath *toIndexPath){
+        })
+        .cellMoveAction(^(NSIndexPath *sourceIndexPath,NSIndexPath *toIndexPath){
             //挪移
-        }).cellTextCharacterHasChanged(^(NSIndexPath *indexPath, NSString *content, NSString *key){
+        })
+        .cellTextCharacterHasChanged(^(NSIndexPath *indexPath, NSString *content, NSString *key){
             //字符发生变化
-        }).cellTextEiditEnd(^(NSIndexPath *indexPath, NSString *content, NSString *key){
+        })
+        .cellTextEiditEnd(^(NSIndexPath *indexPath, NSString *content, NSString *key){
             //文本结束编辑
         });
     }];

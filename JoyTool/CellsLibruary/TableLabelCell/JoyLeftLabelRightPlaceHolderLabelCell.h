@@ -7,7 +7,7 @@
 //
 
 #import "JoyBaseCell.h"
-
+#import "UITableViewCell+JoyCell.h"
 
 /**
  左label 右placeholderLabel
