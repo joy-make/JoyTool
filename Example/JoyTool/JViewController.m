@@ -9,6 +9,7 @@
 #import "JViewController.h"
 #import "JVPresenter.h"
 #import "JVInteractor.h"
+
 @interface JViewController ()
 @property (nonatomic,strong)JoyTableAutoLayoutView *layoutView;
 @property (nonatomic,strong)JVInteractor *interactor;

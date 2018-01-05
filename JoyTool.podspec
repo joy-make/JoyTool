@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JoyTool'
-  s.version          = '0.0.14'
+  s.version          = '0.0.15'
   s.summary          = 'cell的长按事件'
 
 # This description is used to generate tags and improve search results.
