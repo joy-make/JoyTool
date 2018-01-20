@@ -61,7 +61,7 @@
 
 - (void)setCellWithModel:(JoyCellBaseModel *)cellModel{
     cellModel.title =cellModel.placeHolder= [NSString stringWithFormat:@"这是一个%@cell",cellModel.cellName];
-    cellModel.cellType = [cellModel.cellName isEqualToString:JoyLeftLabelTextViewCell]?ECellXibType: ECellCodeType;
+//    cellModel.cellType = [cellModel.cellName isEqualToString:JoyLeftLabelTextViewCell]?ECellXibType: ECellCodeType;
     cellModel.titleColor = JOY_RandomColor;
     cellModel.subTitleColor = JOY_RandomColor;
     cellModel.backgroundColor = JOY_RandomColor;
