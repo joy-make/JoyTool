@@ -77,7 +77,7 @@
     [self setCellWithModel:cellModel];
     cellModel.viewShape = EImageTypeRound;
     cellModel.placeHolderImageStr = @"joymakeHead.jpg";
-    cellModel.avatarBundleName = JoyToolBundle;
+//    cellModel.avatarBundleName = JoyToolBundle;
 }
 
 -(NSMutableArray *)dataArrayM{
