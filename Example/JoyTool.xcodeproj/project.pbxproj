@@ -345,7 +345,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-JoyTool_Example/Pods-JoyTool_Example-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/JoyTool/JoyTool.bundle",
+				"${PODS_ROOT}/../../JoyTool/imageSources/header_icon_back@2x.png",
+				"${PODS_ROOT}/../../JoyTool/imageSources/header_icon_back@3x.png",
+				"${PODS_ROOT}/../../JoyTool/imageSources/joymakeHead.jpg",
+				"${PODS_ROOT}/../../JoyTool/imageSources/select@2x.png",
+				"${PODS_ROOT}/../../JoyTool/imageSources/select@3x.png",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (

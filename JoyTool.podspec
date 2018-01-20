@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'JoyTool'
   s.version          = '0.0.15'
-  s.summary          = 'cell的长按事件'
+ s.summary          = 'A short description of JoyTool.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -33,9 +33,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'JoyTool/**/*.{h,m}'
   s.resources = 'JoyTool/**/*.{png,jpeg,jpg,plist,xib}'
-
- #s.resource_bundles = {'JoyTool' => ['JoyTool/**/*.{xib,png,jpg,jpeg,plist}']}
-
+  #s.resource_bundles = {'JoyTool' => ['JoyTool/**/*.{xib,png,jpg,jpeg,plist}']}
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

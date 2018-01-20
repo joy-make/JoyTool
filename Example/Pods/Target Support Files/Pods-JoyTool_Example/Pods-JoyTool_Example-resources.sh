@@ -84,10 +84,18 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "$PODS_CONFIGURATION_BUILD_DIR/JoyTool/JoyTool.bundle"
+  install_resource "${PODS_ROOT}/../../JoyTool/imageSources/header_icon_back@2x.png"
+  install_resource "${PODS_ROOT}/../../JoyTool/imageSources/header_icon_back@3x.png"
+  install_resource "${PODS_ROOT}/../../JoyTool/imageSources/joymakeHead.jpg"
+  install_resource "${PODS_ROOT}/../../JoyTool/imageSources/select@2x.png"
+  install_resource "${PODS_ROOT}/../../JoyTool/imageSources/select@3x.png"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "$PODS_CONFIGURATION_BUILD_DIR/JoyTool/JoyTool.bundle"
+  install_resource "${PODS_ROOT}/../../JoyTool/imageSources/header_icon_back@2x.png"
+  install_resource "${PODS_ROOT}/../../JoyTool/imageSources/header_icon_back@3x.png"
+  install_resource "${PODS_ROOT}/../../JoyTool/imageSources/joymakeHead.jpg"
+  install_resource "${PODS_ROOT}/../../JoyTool/imageSources/select@2x.png"
+  install_resource "${PODS_ROOT}/../../JoyTool/imageSources/select@3x.png"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
