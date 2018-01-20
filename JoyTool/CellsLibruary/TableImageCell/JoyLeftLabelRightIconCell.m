@@ -12,8 +12,8 @@
 
 @interface JoyLeftLabelRightIconCell ()
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *imageVIew;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UIImageView *imageVIew;
 @end
 @implementation JoyLeftLabelRightIconCell
 

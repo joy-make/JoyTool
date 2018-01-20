@@ -52,11 +52,11 @@
 
 @property (strong, nonatomic) NSIndexPath * index;
 
-@property (nonatomic,copy)void (^beginUpdatesBlock)();
+@property (nonatomic,copy)void (^beginUpdatesBlock)(void);
 
-@property (nonatomic,copy)void (^endUpdatesBlock)();
+@property (nonatomic,copy)void (^endUpdatesBlock)(void);
 
-@property (nonatomic,copy)void (^longPressBlock)();
+@property (nonatomic,copy)void (^longPressBlock)(void);
 
 @property (nonatomic,copy)void (^scrollBlock)(NSIndexPath *indexPath,UITableViewScrollPosition scrollPosition,BOOL animated);
 @end

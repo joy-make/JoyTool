@@ -10,11 +10,11 @@
 #import "joy.h"
 
 @interface JoyLeftIconTopBottomLabelCell ()
-@property (strong, nonatomic) IBOutlet UIImageView *accessView;
+@property (strong, nonatomic) UIImageView *accessView;
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) UILabel *titleLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *subTitleLabel;
+@property (strong, nonatomic) UILabel *subTitleLabel;
 @end
 
 @implementation JoyLeftIconTopBottomLabelCell

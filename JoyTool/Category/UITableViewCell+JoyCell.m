@@ -35,28 +35,28 @@
 //    return [objc_getAssociatedObject(self, @selector(setMaxNum:)) integerValue];
 //}
 
--(void)setBeginUpdatesBlock:(void (^)())beginUpdatesBlock{
+-(void)setBeginUpdatesBlock:(void (^)(void))beginUpdatesBlock{
     objc_setAssociatedObject(self, _cmd, beginUpdatesBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
--(void (^)())beginUpdatesBlock{
+-(void (^)(void))beginUpdatesBlock{
     return objc_getAssociatedObject(self, @selector(setBeginUpdatesBlock:));
 }
 
--(void)setEndUpdatesBlock:(void (^)())endUpdatesBlock{
+-(void)setEndUpdatesBlock:(void (^)(void))endUpdatesBlock{
     objc_setAssociatedObject(self, _cmd, endUpdatesBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
--(void (^)())endUpdatesBlock{
+-(void (^)(void))endUpdatesBlock{
     return objc_getAssociatedObject(self, @selector(setEndUpdatesBlock:));
 }
 
 
--(void (^)())longPressBlock{
+-(void (^)(void))longPressBlock{
     return objc_getAssociatedObject(self, @selector(setLongPressBlock:));
 }
 
--(void)setLongPressBlock:(void (^)())longPressBlock{
+-(void)setLongPressBlock:(void (^)(void))longPressBlock{
     objc_setAssociatedObject(self, _cmd, longPressBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 

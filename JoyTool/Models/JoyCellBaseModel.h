@@ -15,8 +15,8 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger,ECellType) {
-    ECellXibType,
-    ECellCodeType
+    ECellCodeType,
+    ECellXibType
 };
 
 typedef NS_ENUM(NSInteger,ETextCellType) {

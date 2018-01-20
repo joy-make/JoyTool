@@ -450,7 +450,7 @@ CGFloat tableRowH(id self, SEL _cmd, UITableView *tableView,NSIndexPath *indexPa
 }
 
 //刷新整个Table
--(JoyTableAutoLayoutView *(^)())reloadTable{
+-(JoyTableAutoLayoutView *(^)(void))reloadTable{
     __weak __typeof(&*self)weakSelf = self;
     return ^(){
         [weakSelf reloadTableView];

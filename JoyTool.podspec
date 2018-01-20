@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JoyTool'
-  s.version          = '0.0.14'
+  s.version          = '0.0.16'
   s.summary          = 'cell的长按事件'
 
 # This description is used to generate tags and improve search results.
@@ -32,10 +32,12 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '7.0'
 
   s.source_files = 'JoyTool/**/*.{h,m}'
+  s.resources = 'JoyTool/**/*.{png,jpeg,jpg,plist,xib}'
 
-  s.resource_bundles = {
+#s.resource_bundles = {
      'JoyTool' => ['JoyTool/**/*.{xib,png,jpg,jpeg,plist}']
   }
+
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

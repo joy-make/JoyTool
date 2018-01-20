@@ -12,7 +12,7 @@
 #import "UITextField+JoyCategory.h"
 #import "joy.h"
 @interface JoyTextNoLabelCell()<UITextFieldDelegate>
-@property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) UITextField *textField;
 @property (nonatomic,copy) NSString *inputOldStr;
 @property (nonatomic,copy)NSString *changeTextKey;
 

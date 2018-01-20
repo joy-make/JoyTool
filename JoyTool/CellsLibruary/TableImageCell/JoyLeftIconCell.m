@@ -12,7 +12,7 @@
 
 @interface JoyLeftIconCell ()
 
-@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (strong, nonatomic) UIImageView *iconImageView;
 @property (strong, nonatomic)  UILabel *titleLabel;
 
 @end

@@ -12,8 +12,8 @@
 #import "Joy.h"
 
 @interface JoyImageCollectionViewCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UILabel *titleLabel;
 @end
 @implementation JoyImageCollectionViewCell
 

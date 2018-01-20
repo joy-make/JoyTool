@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Joy. All rights reserved.
 //
 
-typedef void(^textFieldChangedBlock)();
+typedef void(^textFieldChangedBlock)(void);
 #import <UIKit/UIKit.h>
 
 @interface UITextField (JoyCategory)
