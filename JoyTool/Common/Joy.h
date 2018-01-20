@@ -62,7 +62,7 @@
 
 #define JOY_blackColor      [UIColor blackColor]      // 0.0 white
 #define JOY_darkGrayColor   [UIColor darkGrayColor]   // 0.333 white
-#define JOY_lightGrayColor  [UIColor lightGrayColor] // 0.667 white
+#define JOY_lightGrayColor  [UIColor lightGrayColor]  // 0.667 white
 #define JOY_whiteColor      [UIColor whiteColor]      // 1.0 white
 #define JOY_grayColor       [UIColor grayColor]       // 0.5 white
 #define JOY_redColor        [UIColor redColor]        // 1.0, 0.0, 0.0 RGB
@@ -86,13 +86,16 @@ green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //获取color结束----------------------------------------------
 
+typedef void (^IDBLOCK)(id idObject);
 typedef void (^DICTBLOCK)(NSDictionary *dict);
 typedef void (^ERRORBLOCK)(NSError *error);
 typedef void (^LISTBLOCK)(NSArray *list);
 typedef void (^BOOLBLOCK)(BOOL boolValue);
 typedef void (^STRINGBLOCK)(NSString *str);
-typedef void (^VOIDBLOCK)();
-
+typedef void (^NUMBERBLOCK)(NSNumber *number);
+typedef void (^FLOATBLOCK)(float floatValue);
+typedef void (^INTBLOCK)(int intValue);
+typedef void (^VOIDBLOCK)(void);
 
 #define SCREEN_H [UIScreen mainScreen].bounds.size.height
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width

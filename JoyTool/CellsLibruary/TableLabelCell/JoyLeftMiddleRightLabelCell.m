@@ -10,9 +10,9 @@
 #import "Joy.h"
 
 @interface JoyLeftMiddleRightLabelCell ()
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *middleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *rightLabel;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UILabel *middleLabel;
+@property (strong, nonatomic) UILabel *rightLabel;
 @end
 
 @implementation JoyLeftMiddleRightLabelCell

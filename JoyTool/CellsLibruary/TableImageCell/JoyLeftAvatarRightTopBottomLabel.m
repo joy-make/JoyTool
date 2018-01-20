@@ -12,9 +12,9 @@
 #import "joy.h"
 @interface JoyLeftAvatarRightTopBottomLabel ()
 
-@property (strong, nonatomic) IBOutlet UIImageView *headImageView;
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *subtitleLabel;
+@property (strong, nonatomic) UIImageView *headImageView;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UILabel *subtitleLabel;
 @end
 
 @implementation JoyLeftAvatarRightTopBottomLabel

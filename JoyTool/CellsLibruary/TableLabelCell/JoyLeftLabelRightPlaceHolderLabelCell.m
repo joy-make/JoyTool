@@ -11,9 +11,9 @@
 #import "joy.h"
 @interface JoyLeftLabelRightPlaceHolderLabelCell ()
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *subTitleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *placeHolderLabe;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UILabel *subTitleLabel;
+@property (strong, nonatomic) UILabel *placeHolderLabe;
 
 @end
 

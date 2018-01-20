@@ -13,8 +13,8 @@
 #import "joy.h"
 
 @interface JoyTextCell()<UITextFieldDelegate>
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UITextField *textField;
 @property (nonatomic,copy) NSString *inputOldStr;
 @property (nonatomic,copy)NSString *changeTextKey;
 @end

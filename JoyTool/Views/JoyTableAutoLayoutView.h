@@ -48,7 +48,7 @@ typedef void (^ScrollBlock)(UIScrollView *scrollView);
 #pragma mark  给尾视图TableFootView
 @property (nonatomic,readonly)JoyTableAutoLayoutView    *(^setTableFootView)(UIView *footView);
 #pragma mark  刷新整个Table
-@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^reloadTable)();
+@property (nonatomic,readonly)JoyTableAutoLayoutView    *(^reloadTable)(void);
 
 //**************编辑Action
 #pragma mark  Cell 选中

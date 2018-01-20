@@ -10,8 +10,8 @@
 
 @interface JoyPickerView : UIView
 @property (nonatomic,strong)UIPickerView *pickerView;
-@property (nonatomic,copy)void (^CancleBtnClickBlock)();
-@property (nonatomic,copy)void (^EntryBtnClickBlock)();
+@property (nonatomic,copy)void (^CancleBtnClickBlock)(void);
+@property (nonatomic,copy)void (^EntryBtnClickBlock)(void);
 @property (nonatomic,copy)void (^pickSelectBlock)(NSInteger coponent,NSInteger row);
 
 //数组套数组格式,多section

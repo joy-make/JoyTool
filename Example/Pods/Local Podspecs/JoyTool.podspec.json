@@ -1,6 +1,6 @@
 {
   "name": "JoyTool",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "summary": "cell的长按事件",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/joy-make/JoyTool",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/joy-make/JoyTool.git",
-    "tag": "0.0.13"
+    "tag": "0.0.14"
   },
   "platforms": {
     "ios": "7.0"

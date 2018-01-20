@@ -9,8 +9,8 @@
 #import "JoyLeftAvatarRightLabelCell.h"
 #import "joy.h"
 @interface JoyLeftAvatarRightLabelCell ()
-@property (strong, nonatomic) IBOutlet UIImageView *headImageView;
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) UIImageView *headImageView;
+@property (strong, nonatomic) UILabel *titleLabel;
 
 @end
 @implementation JoyLeftAvatarRightLabelCell
